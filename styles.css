@@ -1,24 +1,25 @@
 body {
     background-color: #000;
     color: #fff;
+    overflow-x: hidden;
 }
 
-h2, h4 {
-   margin: 0rem 1rem;
+.container {
+    max-width: 100% !important;
+    padding: 0 10px;
 }
 
 h2 {
+    margin: 1rem;
     font-size: 4rem;
     font-weight: bolder;
 }
 
-h4 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 2rem;
+h2 .small-subtitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #ffcd00;
 }
-
-
 
 .accordion-item{
     background-color: #000;
@@ -31,6 +32,11 @@ h4 {
     text-decoration: none !important;
     font-size: 2rem;
     font-weight: bold;
+}
+
+.accordion-button {
+    white-space: normal !important;
+    padding: 15px !important;
 }
 
 .accordion-button::after {
@@ -66,6 +72,17 @@ body {
   background: black;
 }
 
+.nav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+.nav-tabs li {
+    flex-grow: 1;
+    text-align: center;
+}
 .nav-tabs li button {
     color: #fff;
     font-size: 1.25rem;
@@ -75,24 +92,38 @@ body {
     color: #ffcd00 !important
 }
 
+.week-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
 .week-nav .nav-link {
-    border-radius: 5px; /* Makes them slightly rectangular */
-    padding: 10px 20px; /* Increase padding for better clickability */
-    font-weight: bold; /* Make text stand out */
-    background-color: #f8f9fa; /* Light gray background */
-    color: #333; /* Dark text */
-    border: 1px solid #ccc; /* Subtle border */
-    margin: 5px; /* Adds spacing between pills */
+    flex-grow: 1;
+    min-width: 100px;
+    text-align: center;
+    border-radius: 3px;
+    padding: 10px 15px;
+    font-weight: bold; 
+    background-color: #000; 
+    color: #fff;
+    border: 1px solid #ccc;
+    /* margin: 5px; */
 }
 
-/* Active State */
 .week-nav .nav-link.active {
-    background-color: #ffcd00; /* Bootstrap primary blue */
-    color: white;
+    background-color: #ffcd00;
+    color: #000;
 }
 
-/* Hover State */
 .week-nav .nav-link:hover {
     background-color: #ffcd00;
-    color: white;
+}
+
+iframe {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    border: none;
 }
