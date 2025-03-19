@@ -52,6 +52,7 @@ h2 .small-subtitle {
 
 .accordion-button::after {
     filter: brightness(0) invert(1);
+    margin-right: 10px;
 }
 
 .accordion-button:active, .accordion-button:focus {
