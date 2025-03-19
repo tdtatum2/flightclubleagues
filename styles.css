@@ -1,0 +1,98 @@
+body {
+    background-color: #000;
+    color: #fff;
+}
+
+h2, h4 {
+   margin: 0rem 1rem;
+}
+
+h2 {
+    font-size: 4rem;
+    font-weight: bolder;
+}
+
+h4 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+
+
+.accordion-item{
+    background-color: #000;
+    color: #fff;
+}
+
+.accordion-header, .accordion-button {
+    background-color: #000 !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.accordion-button::after {
+    filter: brightness(0) invert(1);
+}
+
+.accordion-button:active, .accordion-button:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.accordion-button, .accordion-button:not(.collapsed) {
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+.pulsing-background {
+  animation: glow-grow 3s ease infinite;
+}
+
+@keyframes glow-grow {
+  0% {
+    box-shadow: 0 0 2px #ffcd00;
+  } 50% {
+    box-shadow: 0 0 10px #ffcd00;
+  } 100% {
+    box-shadow: 0 0 2px #ffcd00;
+  }  
+}
+
+
+body {
+  background: black;
+}
+
+.nav-tabs li button {
+    color: #fff;
+    font-size: 1.25rem;
+}
+
+.nav-tabs li button:hover {
+    color: #ffcd00 !important
+}
+
+.week-nav .nav-link {
+    border-radius: 5px; /* Makes them slightly rectangular */
+    padding: 10px 20px; /* Increase padding for better clickability */
+    font-weight: bold; /* Make text stand out */
+    background-color: #f8f9fa; /* Light gray background */
+    color: #333; /* Dark text */
+    border: 1px solid #ccc; /* Subtle border */
+    margin: 5px; /* Adds spacing between pills */
+}
+
+/* Active State */
+.week-nav .nav-link.active {
+    background-color: #ffcd00; /* Bootstrap primary blue */
+    color: white;
+}
+
+/* Hover State */
+.week-nav .nav-link:hover {
+    background-color: #ffcd00;
+    color: white;
+}
