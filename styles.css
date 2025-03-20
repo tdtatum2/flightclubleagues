@@ -73,7 +73,7 @@ h2 .small-subtitle {
   0% {
     box-shadow: 0 0 2px #ffcd00;
   } 50% {
-    box-shadow: 0 0 10px #ffcd00;
+    box-shadow: 0 0 20px #ffcd00;
   } 100% {
     box-shadow: 0 0 2px #ffcd00;
   }  
@@ -121,7 +121,7 @@ body {
     background-color: #000; 
     color: #fff;
     border: 1px solid #ccc;
-    /* margin: 5px; */
+    margin: 10px;
 }
 
 .week-nav .nav-link.active {
@@ -138,4 +138,13 @@ iframe {
     height: auto;
     min-height: 100vh;
     border: none;
+}
+
+table {
+    font-size: 1.15rem;
+}
+
+table.table thead tr.table-header-gold th {
+    background-color: #ffcd00;
+    color: #000;
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://kit.fontawesome.com/663ad27e23.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Add Bootstrap CSS (Required) -->
@@ -15,10 +16,10 @@
 
     <div class="accordion" id="leaguesAccordion">
         <!-- League Accordion Item -->
-        <div class="accordion-item">
+        <div class="accordion-item" id="s1-a-mens">
             <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                    <img src="logo.png" alt="Flight Logo" style="height: 50px; margin-right: 25px;"> Adult Men's League <span class="badge text-white text-bg-warning text-align-center mx-4 pulsing-background">Live</span>
+                    <img src="logo.png" alt="Flight Logo" style="height: 50px; margin-right: 25px;"> Adult Men's League <span class="badge text-white text-bg-warning text-align-center mx-4 pulsing-background">In Progress</span>
                 </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#leaguesAccordion">
@@ -35,6 +36,9 @@
                         </li>
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#roster" type="button">Roster</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bracket" type="button">Bracket</button>
                         </li>
                     </ul>
                     <div class="tab-content mt-3">
@@ -76,8 +80,9 @@
                         </div>
                         
                         <div class="tab-pane fade" id="news">News content here</div>
-                        <div class="tab-pane fade" id="standings">Standings content here</div>
-                        <div class="tab-pane fade" id="roster">Roster content here</div>
+                        <div class="tab-pane fade" id="standings"></div>
+                        <div class="tab-pane fade" id="roster"></div>
+                        <div class="tab-pane fade" id="bracket">HELLO</div>
                     </div>
                 </div>
             </div>
@@ -94,7 +99,59 @@
     
     window.addEventListener('load', sendHeight);
     window.addEventListener('resize', sendHeight);
-    </script>
+</script>
+<script>
+    const sheetID = "1WVEbJ-x98G7rLBf60ImYfaTXEbCLdyTZpwT9PUTypqA";
+    const apiKey = "AIzaSyCEYYipfQJG5D4FXitCxdeNYQxqplNwAGI";
+    const rosterRange = "Schedule!A3:C14";
+    const standingsRange = "Standings!P3:Q14";
+
+
+    const goldTeam = '<i class="fa-solid fa-ranking-star" style="color: #ffcd00;"></i>';
+    const silverTeam = '<i class="fa-solid fa-ranking-star" style="color: #c0c0c0;"></i>';
+    const bronzeTeam = '<i class="fa-solid fa-ranking-star" style="color: #c96d22;"></i>';
+    
+    const rosterURL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${rosterRange}?key=${apiKey}`;
+    const standingsURL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${standingsRange}?key=${apiKey}`;
+
+    // Data.Values becomes individual arrays for each team. 0 is partner 1. 1 is partner 2. 2 is team name.
+    fetch(rosterURL)
+        .then(response => response.json())
+        .then(data => {
+            let table = "<table class='table table-dark table-striped' border='1'> <thead> <tr class='table-header-gold'><th scope='col'>Team Name</th><th scope='col'>Partner 1</th><th scope='col'>Partner 2</th></tr></thead><tbody>";
+            let counter = 1;
+                data.values.forEach(team => {
+                    table += `<tr> <th scope='row'>${team[2]}</th> <td>${team[0]}</td> <td>${team[1]}</td> </tr>`;
+                    
+                });
+                table += "</tbody></table>";
+                document.getElementById("roster").innerHTML = table;
+        });
+
+    fetch(standingsURL)
+        .then(response => response.json())
+        .then(data => {
+            let table = "<table class='table table-dark' border='1'> <thead> <tr class='table-header-gold'><th style='width: 5%;' scope='col'>Rank</th><th scope='col'>Team Name</th><th style='width: 12%;' scope='col'>Points</th><th style='width: 12%;' scope='col'>Wins</th><th style='width: 12%;' scope='col'>Losses</th></tr></thead><tbody>";
+            let counter = 0;
+            console.log(data.values);
+                data.values.forEach(team => {
+                    console.log(team);
+                    let teamName = team[1];
+                    if (counter === 0) {
+                        table += `<tr> <th scope='row'>${goldTeam}</i></th> <td>${teamName}</td> <td>0</td> <td>0</td> <td>0</td> </tr>`;
+                    } else if (counter === 1) {
+                        table += `<tr> <th scope='row'>${silverTeam}</th> <td>${teamName}</td> <td>0</td> <td>0</td> <td>0</td> </tr>`;
+                    } else if (counter === 2) {
+                        table += `<tr> <th scope='row'>${bronzeTeam}</th> <td>${teamName}</td> <td>0</td> <td>0</td> <td>0</td> </tr>`;
+                    } else {
+                        table += `<tr> <th scope='row'>${team[0]}</th> <td>${teamName}</td> <td>0</td> <td>0</td> <td>0</td> </tr>`;
+                    }
+                    counter++;
+                });              
+                table += "</tbody></table>";
+                document.getElementById("standings").innerHTML = table;
+        })
+</script>
     
     
 </body>
