@@ -148,3 +148,15 @@ table.table thead tr.table-header-gold th {
     background-color: #ffcd00;
     color: #000;
 }
+
+.gold-standings {
+    background-color: #ffcd00;
+}
+
+.silver-standings {
+    background-color: #c0c0c0;
+}
+
+.bronze-standings {
+    background-color: #c96d22;
+}

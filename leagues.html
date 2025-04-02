@@ -78,9 +78,63 @@
                                 </li>
                             </ul>
                         </div>
-                        
-                        <div class="tab-pane fade" id="news">News content here</div>
-                        <div class="tab-pane fade" id="standings"></div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+                            <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+                              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                            </symbol>
+                        </svg>
+                        <div class="tab-pane fade" id="news">
+                            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                <div>
+                                <h4 class="alert-heading">Court Resurfacing March 21st</h4>
+                                <p>
+                                    In our ongoing effort to provide the best possible facility, we have made the difficult decision to repaint our courts.
+                                    To ensure the paint has the proper curing time, league will <strong>not be held on Monday, March 24th.</strong>
+                                </p>
+                                <hr>
+                                <p>We apologize for the inconvenience. Our facility will be closed starting <strong>March 21st</strong>. We will reopen on <strong>Monday, March 31st.</strong></p>
+                            </div>
+                            </div>
+                            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                <div>
+                                    <h4 class="alert-heading">Court Resurfacing March 31st</h4>
+                                    <p>
+                                        Unfortunately, the timeline for the resurfacing has changed. To allow time for the paint crew to resupply and finish resurfacing,
+                                        as well as to ensure the paint has the proper curing time, league will <strong>not be held on Monday, March 31st.</strong>
+                                    </p>
+                                    <hr>
+                                    <p>
+                                        We apologize for the inconvenience. Our facility will reopen on <strong>Wednesday, April 2nd</strong>. The league schedule will be pushed back
+                                        two weeks to accomodate.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="standings">
+                            <div class="d-flex flex-column m-3 align-items-center">
+                                <div class="d-flex flex-row p-5">
+                                    <div class="mx-3 p-5 mt-4 silver-standings text-center">
+                                        <span id="silver-team"></span>
+                                        <br>
+                                        <span id="silver-points"></span>
+                                    </div>
+                                    <div class="mx-3 p-5 mb-4 gold-standings">
+                                        <span id="gold-team"></span>
+                                        <br>
+                                        <span id="gold-points"></span>
+                                    </div>
+                                    <div class="mx-3 p-5 mt-4 bronze-standings">
+                                        <span id="bronze-team"></span>
+                                        <br>
+                                        <span id="bronze-points"></span>
+                                    </div>
+                                </div>
+                                <div class="p-2">4th Place Team D</div>
+                                <div class="p-2">5th Place Team E</div>
+                            </div>
+                        </div>
                         <div class="tab-pane fade" id="roster"></div>
                         <div class="tab-pane fade" id="bracket">HELLO</div>
                     </div>
@@ -101,17 +155,10 @@
     window.addEventListener('resize', sendHeight);
 </script>
 <script>
-    const sheetID = "1WVEbJ-x98G7rLBf60ImYfaTXEbCLdyTZpwT9PUTypqA";
+    const sheetID = "1QChu5pscRkO5we0l32ntSgXHdZBuSOgJxF1cqHxqCMM";
     const apiKey = "AIzaSyCEYYipfQJG5D4FXitCxdeNYQxqplNwAGI";
     const rosterRange = "Schedule!A3:C14";
-    const standingsRange = "Standings!P3:Q14";
-    const week1Range = "Week 1!B3:F33";
-    const week2Range = "Week 1!B3:F33";
-    const week3Range = "Week 1!B3:F33";
-    const week4Range = "Week 1!B3:F33";
-    const week5Range = "Week 1!B3:F33";
-    const week6Range = "Week 1!B3:F33";
-
+    const standingsRange = "Standings!N3:P14";
 
     const goldTeam = '<i class="fa-solid fa-ranking-star" style="color: #ffcd00;"></i>';
     const silverTeam = '<i class="fa-solid fa-ranking-star" style="color: #c0c0c0;"></i>';
@@ -119,16 +166,6 @@
     
     const rosterURL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${rosterRange}?key=${apiKey}`;
     const standingsURL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${standingsRange}?key=${apiKey}`;
-    const week1URL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${week1Range}?key=${apiKey}`;
-    const week2URL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${week2Range}?key=${apiKey}`;
-    const week3URL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${week3Range}?key=${apiKey}`;
-    const week4URL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${week4Range}?key=${apiKey}`;
-    const week5URL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${week5Range}?key=${apiKey}`;
-    const week6URL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${week6Range}?key=${apiKey}`;
-
-    const leagueWins = {};
-    const leagueLosses = {};
-    const leagueScores = {};
 
     // Data.Values becomes individual arrays for each team. 0 is partner 1. 1 is partner 2. 2 is team name.
     fetch(rosterURL)
@@ -138,831 +175,30 @@
             let counter = 1;
                 data.values.forEach(team => {
                     table += `<tr> <th scope='row'>${team[2]}</th> <td>${team[0]}</td> <td>${team[1]}</td> </tr>`;
-                    if(!leagueWins[team[2]]) leagueWins[team[2]] = 0;
-                    if(!leagueLosses[team[2]]) leagueLosses[team[2]] = 0;
-                    if(!leagueScores[team[2]]) leagueScores[team[2]] = 0;
                 });
                 table += "</tbody></table>";
                 document.getElementById("roster").innerHTML = table;
-                return(fetch(week1URL))
+                return(fetch(standingsURL))
         })
-        // WEEK 1 DATA
+        // STANDINGS SECTION
         .then(response => response.json())
         .then(data => {
-            // Making sure the week is finished
-            if((data.values[29][4] !== undefined)) {
-            // Column 1 Match 1
-            if ((parseInt(data.values[2][0]) + parseInt(data.values[3][0]) + parseInt(data.values[4][0])) > (parseInt(data.values[2][1]) + parseInt(data.values[3][1]) + parseInt(data.values[4][1]))) {
-                
-                leagueWins[data.values[0][0]] += 1;
-                leagueLosses[data.values[0][1]] += 1;
-            } else {
-                leagueWins[data.values[0][1]] += 1;
-                leagueLosses[data.values[0][0]] += 1;
-            }
-            leagueScores[data.values[0][0]] += parseInt(data.values[2][0]) + parseInt(data.values[3][0]) + parseInt(data.values[4][0]);
-            leagueScores[data.values[0][1]] += parseInt(data.values[2][1]) + parseInt(data.values[3][1]) + parseInt(data.values[4][1]);
-            // Column 1 Match 2
-            if ((parseInt(data.values[2][3]) + parseInt(data.values[3][3]) + parseInt(data.values[4][3])) > (parseInt(data.values[2][4]) + parseInt(data.values[3][4]) + parseInt(data.values[4][4]))) {
-                leagueWins[data.values[0][3]] += 1;
-                leagueLosses[data.values[0][4]] += 1;
-            } else {
-                leagueWins[data.values[0][4]] += 1;
-                leagueLosses[data.values[0][3]] += 1;
-            }
-            leagueScores[data.values[0][3]] += parseInt(data.values[2][3]) + parseInt(data.values[3][3]) + parseInt(data.values[4][3]);
-            leagueScores[data.values[0][4]] += parseInt(data.values[2][4]) + parseInt(data.values[3][4]) + parseInt(data.values[4][4]);
-            // Column 1 Match 2
-            if ((parseInt(data.values[7][0]) + parseInt(data.values[8][0]) + parseInt(data.values[9][0])) > (parseInt(data.values[7][1]) + parseInt(data.values[8][1]) + parseInt(data.values[9][1]))) {
-                leagueWins[data.values[5][0]] += 1;
-                leagueLosses[data.values[5][1]] += 1;
-            } else {
-                leagueWins[data.values[5][1]] += 1;
-                leagueLosses[data.values[5][0]] += 1;
-            }
-            leagueScores[data.values[5][0]] += parseInt(data.values[7][0]) + parseInt(data.values[8][0]) + parseInt(data.values[9][0]);
-            leagueScores[data.values[5][1]] += parseInt(data.values[7][1]) + parseInt(data.values[8][1]) + parseInt(data.values[9][1]);
-            // Column 2 Match 2
-            if ((parseInt(data.values[7][3]) + parseInt(data.values[8][3]) + parseInt(data.values[9][3])) > (parseInt(data.values[7][4]) + parseInt(data.values[8][4]) + parseInt(data.values[9][4]))) {
-                leagueWins[data.values[5][3]] += 1;
-                leagueLosses[data.values[5][4]] += 1;
-            } else {
-                leagueWins[data.values[5][4]] += 1;
-                leagueLosses[data.values[5][3]] += 1;
-            }
-            leagueScores[data.values[5][3]] += parseInt(data.values[7][3]) + parseInt(data.values[8][3]) + parseInt(data.values[9][3]);
-            leagueScores[data.values[5][4]] += parseInt(data.values[7][4]) + parseInt(data.values[8][4]) + parseInt(data.values[9][4]);
-            // Column 1 Match 3
-            if ((parseInt(data.values[12][0]) + parseInt(data.values[13][0]) + parseInt(data.values[14][0])) > (parseInt(data.values[12][1]) + parseInt(data.values[13][1]) + parseInt(data.values[14][1]))) {
-                leagueWins[data.values[10][0]] += 1;
-                leagueLosses[data.values[10][1]] += 1;
-            } else {
-                leagueWins[data.values[10][1]] += 1;
-                leagueLosses[data.values[10][0]] += 1;
-            }
-            leagueScores[data.values[10][0]] += parseInt(data.values[12][0]) + parseInt(data.values[13][0]) + parseInt(data.values[14][0]);
-            leagueScores[data.values[10][1]] += parseInt(data.values[12][1]) + parseInt(data.values[13][1]) + parseInt(data.values[14][1]);
-            // Column 2 Match 3
-            if (parseInt(data.values[12][3]) + parseInt(data.values[13][3]) + parseInt(data.values[14][3]) > parseInt(data.values[12][4]) + parseInt(data.values[13][4]) + parseInt(data.values[14][4])) {
-                leagueWins[data.values[10][3]] += 1;
-                leagueLosses[data.values[10][4]] += 1;
-            } else {
-                leagueWins[data.values[10][4]] += 1;
-                leagueLosses[data.values[10][3]] += 1;
-            }
-            leagueScores[data.values[10][3]] += parseInt(data.values[12][3]) + parseInt(data.values[13][3]) + parseInt(data.values[14][3]);
-            leagueScores[data.values[10][4]] += parseInt(data.values[12][4]) + parseInt(data.values[13][4]) + parseInt(data.values[14][4]);
-            // Column 1 Match 4
-            if (parseInt(data.values[17][0]) + parseInt(data.values[18][0]) + parseInt(data.values[19][0]) > parseInt(data.values[17][1]) + parseInt(data.values[18][1]) + parseInt(data.values[19][1])) {
-                leagueWins[data.values[15][0]] += 1;
-                leagueLosses[data.values[15][1]] += 1;
-            } else {
-                leagueWins[data.values[15][1]] += 1;
-                leagueLosses[data.values[15][0]] += 1;
-            }
-            leagueScores[data.values[15][0]] += parseInt(data.values[17][0]) + parseInt(data.values[18][0]) + parseInt(data.values[19][0]);
-            leagueScores[data.values[15][1]] += parseInt(data.values[17][1]) + parseInt(data.values[18][1]) + parseInt(data.values[19][1]);
-            // Column 2 Match 4
-            if (parseInt(data.values[17][3]) + parseInt(data.values[18][3]) + parseInt(data.values[19][3]) > parseInt(data.values[17][4]) + parseInt(data.values[18][4]) + parseInt(data.values[19][4])) {
-                leagueWins[data.values[15][3]] += 1;
-                leagueLosses[data.values[15][4]] += 1;
-            } else {
-                leagueWins[data.values[15][4]] += 1;
-                leagueLosses[data.values[15][3]] += 1;
-            }
-            leagueScores[data.values[15][3]] += parseInt(data.values[17][3]) + parseInt(data.values[18][3]) + parseInt(data.values[19][3]);
-            leagueScores[data.values[15][4]] += parseInt(data.values[17][4]) + parseInt(data.values[18][4]) + parseInt(data.values[19][4]);
-            // Column 1 Match 5
-            if (parseInt(data.values[22][0]) + parseInt(data.values[23][0]) + parseInt(data.values[24][0]) > parseInt(data.values[22][1]) + parseInt(data.values[23][1]) + parseInt(data.values[24][1])) {
-                leagueWins[data.values[20][0]] += 1;
-                leagueLosses[data.values[20][1]] += 1;
-            } else {
-                leagueWins[data.values[20][1]] += 1;
-                leagueLosses[data.values[20][0]] += 1;
-            }
-            leagueScores[data.values[20][0]] += parseInt(data.values[22][0]) + parseInt(data.values[23][0]) + parseInt(data.values[24][0]);
-            leagueScores[data.values[20][1]] += parseInt(data.values[22][1]) + parseInt(data.values[23][1]) + parseInt(data.values[24][1]);
-            // Column 2 Match 5
-            if (parseInt(data.values[22][3]) + parseInt(data.values[23][3]) + parseInt(data.values[24][3]) > parseInt(data.values[22][4]) + parseInt(data.values[23][4]) + parseInt(data.values[24][4])) {
-                leagueWins[data.values[20][3]] += 1;
-                leagueLosses[data.values[20][4]] += 1;
-            } else {
-                leagueWins[data.values[20][4]] += 1;
-                leagueLosses[data.values[20][3]] += 1;
-            }
-            leagueScores[data.values[20][3]] += parseInt(data.values[22][3]) + parseInt(data.values[23][3]) + parseInt(data.values[24][3]);
-            leagueScores[data.values[20][4]] += parseInt(data.values[22][4]) + parseInt(data.values[23][4]) + parseInt(data.values[24][4]);
-            // Column 1 Match 6
-            if (parseInt(data.values[27][0]) + parseInt(data.values[28][0]) + parseInt(data.values[29][0]) > parseInt(data.values[27][1]) + parseInt(data.values[28][1]) + parseInt(data.values[29][1])) {
-                leagueWins[data.values[25][0]] += 1;
-                leagueLosses[data.values[25][1]] += 1;
-            } else {
-                leagueWins[data.values[25][1]] += 1;
-                leagueLosses[data.values[25][0]] += 1;
-            }
-            leagueScores[data.values[25][0]] += parseInt(data.values[27][0]) + parseInt(data.values[28][0]) + parseInt(data.values[29][0]);
-            leagueScores[data.values[25][1]] += parseInt(data.values[27][1]) + parseInt(data.values[28][1]) + parseInt(data.values[29][1]);
-            // Column 2 Match 6
-            if (parseInt(data.values[27][3]) + parseInt(data.values[28][3]) + parseInt(data.values[29][3]) > parseInt(data.values[27][4]) + parseInt(data.values[28][4]) + parseInt(data.values[29][4])) {
-                leagueWins[data.values[25][3]] += 1;
-                leagueLosses[data.values[25][4]] += 1;
-            } else {
-                leagueWins[data.values[25][4]] += 1;
-                leagueLosses[data.values[25][3]] += 1;
-            } 
-            leagueScores[data.values[25][3]] += parseInt(data.values[27][3]) + parseInt(data.values[28][3]) + parseInt(data.values[29][3]);
-            leagueScores[data.values[25][4]] += parseInt(data.values[27][4]) + parseInt(data.values[28][4]) + parseInt(data.values[29][4]);
-            return (fetch(week2URL));
-        } else {
-            return (fetch(week2URL));
-        }
-        })
-        
-        // WEEK 2 DATA
-        .then(response => response.json())
-        .then(data => {
-            // Making sure the week is finished
-            if((data.values[29][4] !== undefined)) {
-            // Column 1 Match 1
-            if ((parseInt(data.values[2][0]) + parseInt(data.values[3][0]) + parseInt(data.values[4][0])) > (parseInt(data.values[2][1]) + parseInt(data.values[3][1]) + parseInt(data.values[4][1]))) {
-                
-                leagueWins[data.values[0][0]] += 1;
-                leagueLosses[data.values[0][1]] += 1;
-            } else {
-                leagueWins[data.values[0][1]] += 1;
-                leagueLosses[data.values[0][0]] += 1;
-            }
-            leagueScores[data.values[0][0]] += parseInt(data.values[2][0]) + parseInt(data.values[3][0]) + parseInt(data.values[4][0]);
-            leagueScores[data.values[0][1]] += parseInt(data.values[2][1]) + parseInt(data.values[3][1]) + parseInt(data.values[4][1]);
-            // Column 1 Match 2
-            if ((parseInt(data.values[2][3]) + parseInt(data.values[3][3]) + parseInt(data.values[4][3])) > (parseInt(data.values[2][4]) + parseInt(data.values[3][4]) + parseInt(data.values[4][4]))) {
-                leagueWins[data.values[0][3]] += 1;
-                leagueLosses[data.values[0][4]] += 1;
-            } else {
-                leagueWins[data.values[0][4]] += 1;
-                leagueLosses[data.values[0][3]] += 1;
-            }
-            leagueScores[data.values[0][3]] += parseInt(data.values[2][3]) + parseInt(data.values[3][3]) + parseInt(data.values[4][3]);
-            leagueScores[data.values[0][4]] += parseInt(data.values[2][4]) + parseInt(data.values[3][4]) + parseInt(data.values[4][4]);
-            // Column 1 Match 2
-            if ((parseInt(data.values[7][0]) + parseInt(data.values[8][0]) + parseInt(data.values[9][0])) > (parseInt(data.values[7][1]) + parseInt(data.values[8][1]) + parseInt(data.values[9][1]))) {
-                leagueWins[data.values[5][0]] += 1;
-                leagueLosses[data.values[5][1]] += 1;
-            } else {
-                leagueWins[data.values[5][1]] += 1;
-                leagueLosses[data.values[5][0]] += 1;
-            }
-            leagueScores[data.values[5][0]] += parseInt(data.values[7][0]) + parseInt(data.values[8][0]) + parseInt(data.values[9][0]);
-            leagueScores[data.values[5][1]] += parseInt(data.values[7][1]) + parseInt(data.values[8][1]) + parseInt(data.values[9][1]);
-            // Column 2 Match 2
-            if ((parseInt(data.values[7][3]) + parseInt(data.values[8][3]) + parseInt(data.values[9][3])) > (parseInt(data.values[7][4]) + parseInt(data.values[8][4]) + parseInt(data.values[9][4]))) {
-                leagueWins[data.values[5][3]] += 1;
-                leagueLosses[data.values[5][4]] += 1;
-            } else {
-                leagueWins[data.values[5][4]] += 1;
-                leagueLosses[data.values[5][3]] += 1;
-            }
-            leagueScores[data.values[5][3]] += parseInt(data.values[7][3]) + parseInt(data.values[8][3]) + parseInt(data.values[9][3]);
-            leagueScores[data.values[5][4]] += parseInt(data.values[7][4]) + parseInt(data.values[8][4]) + parseInt(data.values[9][4]);
-            // Column 1 Match 3
-            if ((parseInt(data.values[12][0]) + parseInt(data.values[13][0]) + parseInt(data.values[14][0])) > (parseInt(data.values[12][1]) + parseInt(data.values[13][1]) + parseInt(data.values[14][1]))) {
-                leagueWins[data.values[10][0]] += 1;
-                leagueLosses[data.values[10][1]] += 1;
-            } else {
-                leagueWins[data.values[10][1]] += 1;
-                leagueLosses[data.values[10][0]] += 1;
-            }
-            leagueScores[data.values[10][0]] += parseInt(data.values[12][0]) + parseInt(data.values[13][0]) + parseInt(data.values[14][0]);
-            leagueScores[data.values[10][1]] += parseInt(data.values[12][1]) + parseInt(data.values[13][1]) + parseInt(data.values[14][1]);
-            // Column 2 Match 3
-            if (parseInt(data.values[12][3]) + parseInt(data.values[13][3]) + parseInt(data.values[14][3]) > parseInt(data.values[12][4]) + parseInt(data.values[13][4]) + parseInt(data.values[14][4])) {
-                leagueWins[data.values[10][3]] += 1;
-                leagueLosses[data.values[10][4]] += 1;
-            } else {
-                leagueWins[data.values[10][4]] += 1;
-                leagueLosses[data.values[10][3]] += 1;
-            }
-            leagueScores[data.values[10][3]] += parseInt(data.values[12][3]) + parseInt(data.values[13][3]) + parseInt(data.values[14][3]);
-            leagueScores[data.values[10][4]] += parseInt(data.values[12][4]) + parseInt(data.values[13][4]) + parseInt(data.values[14][4]);
-            // Column 1 Match 4
-            if (parseInt(data.values[17][0]) + parseInt(data.values[18][0]) + parseInt(data.values[19][0]) > parseInt(data.values[17][1]) + parseInt(data.values[18][1]) + parseInt(data.values[19][1])) {
-                leagueWins[data.values[15][0]] += 1;
-                leagueLosses[data.values[15][1]] += 1;
-            } else {
-                leagueWins[data.values[15][1]] += 1;
-                leagueLosses[data.values[15][0]] += 1;
-            }
-            leagueScores[data.values[15][0]] += parseInt(data.values[17][0]) + parseInt(data.values[18][0]) + parseInt(data.values[19][0]);
-            leagueScores[data.values[15][1]] += parseInt(data.values[17][1]) + parseInt(data.values[18][1]) + parseInt(data.values[19][1]);
-            // Column 2 Match 4
-            if (parseInt(data.values[17][3]) + parseInt(data.values[18][3]) + parseInt(data.values[19][3]) > parseInt(data.values[17][4]) + parseInt(data.values[18][4]) + parseInt(data.values[19][4])) {
-                leagueWins[data.values[15][3]] += 1;
-                leagueLosses[data.values[15][4]] += 1;
-            } else {
-                leagueWins[data.values[15][4]] += 1;
-                leagueLosses[data.values[15][3]] += 1;
-            }
-            leagueScores[data.values[15][3]] += parseInt(data.values[17][3]) + parseInt(data.values[18][3]) + parseInt(data.values[19][3]);
-            leagueScores[data.values[15][4]] += parseInt(data.values[17][4]) + parseInt(data.values[18][4]) + parseInt(data.values[19][4]);
-            // Column 1 Match 5
-            if (parseInt(data.values[22][0]) + parseInt(data.values[23][0]) + parseInt(data.values[24][0]) > parseInt(data.values[22][1]) + parseInt(data.values[23][1]) + parseInt(data.values[24][1])) {
-                leagueWins[data.values[20][0]] += 1;
-                leagueLosses[data.values[20][1]] += 1;
-            } else {
-                leagueWins[data.values[20][1]] += 1;
-                leagueLosses[data.values[20][0]] += 1;
-            }
-            leagueScores[data.values[20][0]] += parseInt(data.values[22][0]) + parseInt(data.values[23][0]) + parseInt(data.values[24][0]);
-            leagueScores[data.values[20][1]] += parseInt(data.values[22][1]) + parseInt(data.values[23][1]) + parseInt(data.values[24][1]);
-            // Column 2 Match 5
-            if (parseInt(data.values[22][3]) + parseInt(data.values[23][3]) + parseInt(data.values[24][3]) > parseInt(data.values[22][4]) + parseInt(data.values[23][4]) + parseInt(data.values[24][4])) {
-                leagueWins[data.values[20][3]] += 1;
-                leagueLosses[data.values[20][4]] += 1;
-            } else {
-                leagueWins[data.values[20][4]] += 1;
-                leagueLosses[data.values[20][3]] += 1;
-            }
-            leagueScores[data.values[20][3]] += parseInt(data.values[22][3]) + parseInt(data.values[23][3]) + parseInt(data.values[24][3]);
-            leagueScores[data.values[20][4]] += parseInt(data.values[22][4]) + parseInt(data.values[23][4]) + parseInt(data.values[24][4]);
-            // Column 1 Match 6
-            if (parseInt(data.values[27][0]) + parseInt(data.values[28][0]) + parseInt(data.values[29][0]) > parseInt(data.values[27][1]) + parseInt(data.values[28][1]) + parseInt(data.values[29][1])) {
-                leagueWins[data.values[25][0]] += 1;
-                leagueLosses[data.values[25][1]] += 1;
-            } else {
-                leagueWins[data.values[25][1]] += 1;
-                leagueLosses[data.values[25][0]] += 1;
-            }
-            leagueScores[data.values[25][0]] += parseInt(data.values[27][0]) + parseInt(data.values[28][0]) + parseInt(data.values[29][0]);
-            leagueScores[data.values[25][1]] += parseInt(data.values[27][1]) + parseInt(data.values[28][1]) + parseInt(data.values[29][1]);
-            // Column 2 Match 6
-            if (parseInt(data.values[27][3]) + parseInt(data.values[28][3]) + parseInt(data.values[29][3]) > parseInt(data.values[27][4]) + parseInt(data.values[28][4]) + parseInt(data.values[29][4])) {
-                leagueWins[data.values[25][3]] += 1;
-                leagueLosses[data.values[25][4]] += 1;
-            } else {
-                leagueWins[data.values[25][4]] += 1;
-                leagueLosses[data.values[25][3]] += 1;
-            } 
-            leagueScores[data.values[25][3]] += parseInt(data.values[27][3]) + parseInt(data.values[28][3]) + parseInt(data.values[29][3]);
-            leagueScores[data.values[25][4]] += parseInt(data.values[27][4]) + parseInt(data.values[28][4]) + parseInt(data.values[29][4]);
-            return (fetch(week3URL));
-        } else {
-            return (fetch(week3URL));
-        }
-        })
-        
-        // WEEK 3 DATA
-        .then(response => response.json())
-        .then(data => {
-            // Making sure the week is finished
-            if((data.values[29][4] !== undefined)) {
-            // Column 1 Match 1
-            if ((parseInt(data.values[2][0]) + parseInt(data.values[3][0]) + parseInt(data.values[4][0])) > (parseInt(data.values[2][1]) + parseInt(data.values[3][1]) + parseInt(data.values[4][1]))) {
-                
-                leagueWins[data.values[0][0]] += 1;
-                leagueLosses[data.values[0][1]] += 1;
-            } else {
-                leagueWins[data.values[0][1]] += 1;
-                leagueLosses[data.values[0][0]] += 1;
-            }
-            leagueScores[data.values[0][0]] += parseInt(data.values[2][0]) + parseInt(data.values[3][0]) + parseInt(data.values[4][0]);
-            leagueScores[data.values[0][1]] += parseInt(data.values[2][1]) + parseInt(data.values[3][1]) + parseInt(data.values[4][1]);
-            // Column 1 Match 2
-            if ((parseInt(data.values[2][3]) + parseInt(data.values[3][3]) + parseInt(data.values[4][3])) > (parseInt(data.values[2][4]) + parseInt(data.values[3][4]) + parseInt(data.values[4][4]))) {
-                leagueWins[data.values[0][3]] += 1;
-                leagueLosses[data.values[0][4]] += 1;
-            } else {
-                leagueWins[data.values[0][4]] += 1;
-                leagueLosses[data.values[0][3]] += 1;
-            }
-            leagueScores[data.values[0][3]] += parseInt(data.values[2][3]) + parseInt(data.values[3][3]) + parseInt(data.values[4][3]);
-            leagueScores[data.values[0][4]] += parseInt(data.values[2][4]) + parseInt(data.values[3][4]) + parseInt(data.values[4][4]);
-            // Column 1 Match 2
-            if ((parseInt(data.values[7][0]) + parseInt(data.values[8][0]) + parseInt(data.values[9][0])) > (parseInt(data.values[7][1]) + parseInt(data.values[8][1]) + parseInt(data.values[9][1]))) {
-                leagueWins[data.values[5][0]] += 1;
-                leagueLosses[data.values[5][1]] += 1;
-            } else {
-                leagueWins[data.values[5][1]] += 1;
-                leagueLosses[data.values[5][0]] += 1;
-            }
-            leagueScores[data.values[5][0]] += parseInt(data.values[7][0]) + parseInt(data.values[8][0]) + parseInt(data.values[9][0]);
-            leagueScores[data.values[5][1]] += parseInt(data.values[7][1]) + parseInt(data.values[8][1]) + parseInt(data.values[9][1]);
-            // Column 2 Match 2
-            if ((parseInt(data.values[7][3]) + parseInt(data.values[8][3]) + parseInt(data.values[9][3])) > (parseInt(data.values[7][4]) + parseInt(data.values[8][4]) + parseInt(data.values[9][4]))) {
-                leagueWins[data.values[5][3]] += 1;
-                leagueLosses[data.values[5][4]] += 1;
-            } else {
-                leagueWins[data.values[5][4]] += 1;
-                leagueLosses[data.values[5][3]] += 1;
-            }
-            leagueScores[data.values[5][3]] += parseInt(data.values[7][3]) + parseInt(data.values[8][3]) + parseInt(data.values[9][3]);
-            leagueScores[data.values[5][4]] += parseInt(data.values[7][4]) + parseInt(data.values[8][4]) + parseInt(data.values[9][4]);
-            // Column 1 Match 3
-            if ((parseInt(data.values[12][0]) + parseInt(data.values[13][0]) + parseInt(data.values[14][0])) > (parseInt(data.values[12][1]) + parseInt(data.values[13][1]) + parseInt(data.values[14][1]))) {
-                leagueWins[data.values[10][0]] += 1;
-                leagueLosses[data.values[10][1]] += 1;
-            } else {
-                leagueWins[data.values[10][1]] += 1;
-                leagueLosses[data.values[10][0]] += 1;
-            }
-            leagueScores[data.values[10][0]] += parseInt(data.values[12][0]) + parseInt(data.values[13][0]) + parseInt(data.values[14][0]);
-            leagueScores[data.values[10][1]] += parseInt(data.values[12][1]) + parseInt(data.values[13][1]) + parseInt(data.values[14][1]);
-            // Column 2 Match 3
-            if (parseInt(data.values[12][3]) + parseInt(data.values[13][3]) + parseInt(data.values[14][3]) > parseInt(data.values[12][4]) + parseInt(data.values[13][4]) + parseInt(data.values[14][4])) {
-                leagueWins[data.values[10][3]] += 1;
-                leagueLosses[data.values[10][4]] += 1;
-            } else {
-                leagueWins[data.values[10][4]] += 1;
-                leagueLosses[data.values[10][3]] += 1;
-            }
-            leagueScores[data.values[10][3]] += parseInt(data.values[12][3]) + parseInt(data.values[13][3]) + parseInt(data.values[14][3]);
-            leagueScores[data.values[10][4]] += parseInt(data.values[12][4]) + parseInt(data.values[13][4]) + parseInt(data.values[14][4]);
-            // Column 1 Match 4
-            if (parseInt(data.values[17][0]) + parseInt(data.values[18][0]) + parseInt(data.values[19][0]) > parseInt(data.values[17][1]) + parseInt(data.values[18][1]) + parseInt(data.values[19][1])) {
-                leagueWins[data.values[15][0]] += 1;
-                leagueLosses[data.values[15][1]] += 1;
-            } else {
-                leagueWins[data.values[15][1]] += 1;
-                leagueLosses[data.values[15][0]] += 1;
-            }
-            leagueScores[data.values[15][0]] += parseInt(data.values[17][0]) + parseInt(data.values[18][0]) + parseInt(data.values[19][0]);
-            leagueScores[data.values[15][1]] += parseInt(data.values[17][1]) + parseInt(data.values[18][1]) + parseInt(data.values[19][1]);
-            // Column 2 Match 4
-            if (parseInt(data.values[17][3]) + parseInt(data.values[18][3]) + parseInt(data.values[19][3]) > parseInt(data.values[17][4]) + parseInt(data.values[18][4]) + parseInt(data.values[19][4])) {
-                leagueWins[data.values[15][3]] += 1;
-                leagueLosses[data.values[15][4]] += 1;
-            } else {
-                leagueWins[data.values[15][4]] += 1;
-                leagueLosses[data.values[15][3]] += 1;
-            }
-            leagueScores[data.values[15][3]] += parseInt(data.values[17][3]) + parseInt(data.values[18][3]) + parseInt(data.values[19][3]);
-            leagueScores[data.values[15][4]] += parseInt(data.values[17][4]) + parseInt(data.values[18][4]) + parseInt(data.values[19][4]);
-            // Column 1 Match 5
-            if (parseInt(data.values[22][0]) + parseInt(data.values[23][0]) + parseInt(data.values[24][0]) > parseInt(data.values[22][1]) + parseInt(data.values[23][1]) + parseInt(data.values[24][1])) {
-                leagueWins[data.values[20][0]] += 1;
-                leagueLosses[data.values[20][1]] += 1;
-            } else {
-                leagueWins[data.values[20][1]] += 1;
-                leagueLosses[data.values[20][0]] += 1;
-            }
-            leagueScores[data.values[20][0]] += parseInt(data.values[22][0]) + parseInt(data.values[23][0]) + parseInt(data.values[24][0]);
-            leagueScores[data.values[20][1]] += parseInt(data.values[22][1]) + parseInt(data.values[23][1]) + parseInt(data.values[24][1]);
-            // Column 2 Match 5
-            if (parseInt(data.values[22][3]) + parseInt(data.values[23][3]) + parseInt(data.values[24][3]) > parseInt(data.values[22][4]) + parseInt(data.values[23][4]) + parseInt(data.values[24][4])) {
-                leagueWins[data.values[20][3]] += 1;
-                leagueLosses[data.values[20][4]] += 1;
-            } else {
-                leagueWins[data.values[20][4]] += 1;
-                leagueLosses[data.values[20][3]] += 1;
-            }
-            leagueScores[data.values[20][3]] += parseInt(data.values[22][3]) + parseInt(data.values[23][3]) + parseInt(data.values[24][3]);
-            leagueScores[data.values[20][4]] += parseInt(data.values[22][4]) + parseInt(data.values[23][4]) + parseInt(data.values[24][4]);
-            // Column 1 Match 6
-            if (parseInt(data.values[27][0]) + parseInt(data.values[28][0]) + parseInt(data.values[29][0]) > parseInt(data.values[27][1]) + parseInt(data.values[28][1]) + parseInt(data.values[29][1])) {
-                leagueWins[data.values[25][0]] += 1;
-                leagueLosses[data.values[25][1]] += 1;
-            } else {
-                leagueWins[data.values[25][1]] += 1;
-                leagueLosses[data.values[25][0]] += 1;
-            }
-            leagueScores[data.values[25][0]] += parseInt(data.values[27][0]) + parseInt(data.values[28][0]) + parseInt(data.values[29][0]);
-            leagueScores[data.values[25][1]] += parseInt(data.values[27][1]) + parseInt(data.values[28][1]) + parseInt(data.values[29][1]);
-            // Column 2 Match 6
-            if (parseInt(data.values[27][3]) + parseInt(data.values[28][3]) + parseInt(data.values[29][3]) > parseInt(data.values[27][4]) + parseInt(data.values[28][4]) + parseInt(data.values[29][4])) {
-                leagueWins[data.values[25][3]] += 1;
-                leagueLosses[data.values[25][4]] += 1;
-            } else {
-                leagueWins[data.values[25][4]] += 1;
-                leagueLosses[data.values[25][3]] += 1;
-            } 
-            leagueScores[data.values[25][3]] += parseInt(data.values[27][3]) + parseInt(data.values[28][3]) + parseInt(data.values[29][3]);
-            leagueScores[data.values[25][4]] += parseInt(data.values[27][4]) + parseInt(data.values[28][4]) + parseInt(data.values[29][4]);
-            return (fetch(standingsURL));
-        } else {
-            return (fetch(standingsURL));
-        }
-        })
-        
-        // WEEK 4 DATA
-        // .then(response => response.json())
-        // .then(data => {
-        //     // Making sure the week is finished
-        //     if((data.values[29][4] !== undefined)) {
-        //     // Column 1 Match 1
-        //     if ((parseInt(data.values[2][0]) + parseInt(data.values[3][0]) + parseInt(data.values[4][0])) > (parseInt(data.values[2][1]) + parseInt(data.values[3][1]) + parseInt(data.values[4][1]))) {
-                
-        //         leagueWins[data.values[0][0]] += 1;
-        //         leagueLosses[data.values[0][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[0][1]] += 1;
-        //         leagueLosses[data.values[0][0]] += 1;
-        //     }
-        //     leagueScores[data.values[0][0]] += parseInt(data.values[2][0]) + parseInt(data.values[3][0]) + parseInt(data.values[4][0]);
-        //     leagueScores[data.values[0][1]] += parseInt(data.values[2][1]) + parseInt(data.values[3][1]) + parseInt(data.values[4][1]);
-        //     // Column 1 Match 2
-        //     if ((parseInt(data.values[2][3]) + parseInt(data.values[3][3]) + parseInt(data.values[4][3])) > (parseInt(data.values[2][4]) + parseInt(data.values[3][4]) + parseInt(data.values[4][4]))) {
-        //         leagueWins[data.values[0][3]] += 1;
-        //         leagueLosses[data.values[0][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[0][4]] += 1;
-        //         leagueLosses[data.values[0][3]] += 1;
-        //     }
-        //     leagueScores[data.values[0][3]] += parseInt(data.values[2][3]) + parseInt(data.values[3][3]) + parseInt(data.values[4][3]);
-        //     leagueScores[data.values[0][4]] += parseInt(data.values[2][4]) + parseInt(data.values[3][4]) + parseInt(data.values[4][4]);
-        //     // Column 1 Match 2
-        //     if ((parseInt(data.values[7][0]) + parseInt(data.values[8][0]) + parseInt(data.values[9][0])) > (parseInt(data.values[7][1]) + parseInt(data.values[8][1]) + parseInt(data.values[9][1]))) {
-        //         leagueWins[data.values[5][0]] += 1;
-        //         leagueLosses[data.values[5][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[5][1]] += 1;
-        //         leagueLosses[data.values[5][0]] += 1;
-        //     }
-        //     leagueScores[data.values[5][0]] += parseInt(data.values[7][0]) + parseInt(data.values[8][0]) + parseInt(data.values[9][0]);
-        //     leagueScores[data.values[5][1]] += parseInt(data.values[7][1]) + parseInt(data.values[8][1]) + parseInt(data.values[9][1]);
-        //     // Column 2 Match 2
-        //     if ((parseInt(data.values[7][3]) + parseInt(data.values[8][3]) + parseInt(data.values[9][3])) > (parseInt(data.values[7][4]) + parseInt(data.values[8][4]) + parseInt(data.values[9][4]))) {
-        //         leagueWins[data.values[5][3]] += 1;
-        //         leagueLosses[data.values[5][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[5][4]] += 1;
-        //         leagueLosses[data.values[5][3]] += 1;
-        //     }
-        //     leagueScores[data.values[5][3]] += parseInt(data.values[7][3]) + parseInt(data.values[8][3]) + parseInt(data.values[9][3]);
-        //     leagueScores[data.values[5][4]] += parseInt(data.values[7][4]) + parseInt(data.values[8][4]) + parseInt(data.values[9][4]);
-        //     // Column 1 Match 3
-        //     if ((parseInt(data.values[12][0]) + parseInt(data.values[13][0]) + parseInt(data.values[14][0])) > (parseInt(data.values[12][1]) + parseInt(data.values[13][1]) + parseInt(data.values[14][1]))) {
-        //         leagueWins[data.values[10][0]] += 1;
-        //         leagueLosses[data.values[10][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[10][1]] += 1;
-        //         leagueLosses[data.values[10][0]] += 1;
-        //     }
-        //     leagueScores[data.values[10][0]] += parseInt(data.values[12][0]) + parseInt(data.values[13][0]) + parseInt(data.values[14][0]);
-        //     leagueScores[data.values[10][1]] += parseInt(data.values[12][1]) + parseInt(data.values[13][1]) + parseInt(data.values[14][1]);
-        //     // Column 2 Match 3
-        //     if (parseInt(data.values[12][3]) + parseInt(data.values[13][3]) + parseInt(data.values[14][3]) > parseInt(data.values[12][4]) + parseInt(data.values[13][4]) + parseInt(data.values[14][4])) {
-        //         leagueWins[data.values[10][3]] += 1;
-        //         leagueLosses[data.values[10][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[10][4]] += 1;
-        //         leagueLosses[data.values[10][3]] += 1;
-        //     }
-        //     leagueScores[data.values[10][3]] += parseInt(data.values[12][3]) + parseInt(data.values[13][3]) + parseInt(data.values[14][3]);
-        //     leagueScores[data.values[10][4]] += parseInt(data.values[12][4]) + parseInt(data.values[13][4]) + parseInt(data.values[14][4]);
-        //     // Column 1 Match 4
-        //     if (parseInt(data.values[17][0]) + parseInt(data.values[18][0]) + parseInt(data.values[19][0]) > parseInt(data.values[17][1]) + parseInt(data.values[18][1]) + parseInt(data.values[19][1])) {
-        //         leagueWins[data.values[15][0]] += 1;
-        //         leagueLosses[data.values[15][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[15][1]] += 1;
-        //         leagueLosses[data.values[15][0]] += 1;
-        //     }
-        //     leagueScores[data.values[15][0]] += parseInt(data.values[17][0]) + parseInt(data.values[18][0]) + parseInt(data.values[19][0]);
-        //     leagueScores[data.values[15][1]] += parseInt(data.values[17][1]) + parseInt(data.values[18][1]) + parseInt(data.values[19][1]);
-        //     // Column 2 Match 4
-        //     if (parseInt(data.values[17][3]) + parseInt(data.values[18][3]) + parseInt(data.values[19][3]) > parseInt(data.values[17][4]) + parseInt(data.values[18][4]) + parseInt(data.values[19][4])) {
-        //         leagueWins[data.values[15][3]] += 1;
-        //         leagueLosses[data.values[15][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[15][4]] += 1;
-        //         leagueLosses[data.values[15][3]] += 1;
-        //     }
-        //     leagueScores[data.values[15][3]] += parseInt(data.values[17][3]) + parseInt(data.values[18][3]) + parseInt(data.values[19][3]);
-        //     leagueScores[data.values[15][4]] += parseInt(data.values[17][4]) + parseInt(data.values[18][4]) + parseInt(data.values[19][4]);
-        //     // Column 1 Match 5
-        //     if (parseInt(data.values[22][0]) + parseInt(data.values[23][0]) + parseInt(data.values[24][0]) > parseInt(data.values[22][1]) + parseInt(data.values[23][1]) + parseInt(data.values[24][1])) {
-        //         leagueWins[data.values[20][0]] += 1;
-        //         leagueLosses[data.values[20][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[20][1]] += 1;
-        //         leagueLosses[data.values[20][0]] += 1;
-        //     }
-        //     leagueScores[data.values[20][0]] += parseInt(data.values[22][0]) + parseInt(data.values[23][0]) + parseInt(data.values[24][0]);
-        //     leagueScores[data.values[20][1]] += parseInt(data.values[22][1]) + parseInt(data.values[23][1]) + parseInt(data.values[24][1]);
-        //     // Column 2 Match 5
-        //     if (parseInt(data.values[22][3]) + parseInt(data.values[23][3]) + parseInt(data.values[24][3]) > parseInt(data.values[22][4]) + parseInt(data.values[23][4]) + parseInt(data.values[24][4])) {
-        //         leagueWins[data.values[20][3]] += 1;
-        //         leagueLosses[data.values[20][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[20][4]] += 1;
-        //         leagueLosses[data.values[20][3]] += 1;
-        //     }
-        //     leagueScores[data.values[20][3]] += parseInt(data.values[22][3]) + parseInt(data.values[23][3]) + parseInt(data.values[24][3]);
-        //     leagueScores[data.values[20][4]] += parseInt(data.values[22][4]) + parseInt(data.values[23][4]) + parseInt(data.values[24][4]);
-        //     // Column 1 Match 6
-        //     if (parseInt(data.values[27][0]) + parseInt(data.values[28][0]) + parseInt(data.values[29][0]) > parseInt(data.values[27][1]) + parseInt(data.values[28][1]) + parseInt(data.values[29][1])) {
-        //         leagueWins[data.values[25][0]] += 1;
-        //         leagueLosses[data.values[25][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[25][1]] += 1;
-        //         leagueLosses[data.values[25][0]] += 1;
-        //     }
-        //     leagueScores[data.values[25][0]] += parseInt(data.values[27][0]) + parseInt(data.values[28][0]) + parseInt(data.values[29][0]);
-        //     leagueScores[data.values[25][1]] += parseInt(data.values[27][1]) + parseInt(data.values[28][1]) + parseInt(data.values[29][1]);
-        //     // Column 2 Match 6
-        //     if (parseInt(data.values[27][3]) + parseInt(data.values[28][3]) + parseInt(data.values[29][3]) > parseInt(data.values[27][4]) + parseInt(data.values[28][4]) + parseInt(data.values[29][4])) {
-        //         leagueWins[data.values[25][3]] += 1;
-        //         leagueLosses[data.values[25][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[25][4]] += 1;
-        //         leagueLosses[data.values[25][3]] += 1;
-        //     } 
-        //     leagueScores[data.values[25][3]] += parseInt(data.values[27][3]) + parseInt(data.values[28][3]) + parseInt(data.values[29][3]);
-        //     leagueScores[data.values[25][4]] += parseInt(data.values[27][4]) + parseInt(data.values[28][4]) + parseInt(data.values[29][4]);
-        //     return (fetch(week5URL));
-        // } else {
-        //     return (fetch(week5URL));
-        // }
-        // })
-        
-        // // WEEK 5 DATA
-        // .then(response => response.json())
-        // .then(data => {
-        //     // Making sure the week is finished
-        //     if((data.values[29][4] !== undefined)) {
-        //     // Column 1 Match 1
-        //     if ((parseInt(data.values[2][0]) + parseInt(data.values[3][0]) + parseInt(data.values[4][0])) > (parseInt(data.values[2][1]) + parseInt(data.values[3][1]) + parseInt(data.values[4][1]))) {
-                
-        //         leagueWins[data.values[0][0]] += 1;
-        //         leagueLosses[data.values[0][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[0][1]] += 1;
-        //         leagueLosses[data.values[0][0]] += 1;
-        //     }
-        //     leagueScores[data.values[0][0]] += parseInt(data.values[2][0]) + parseInt(data.values[3][0]) + parseInt(data.values[4][0]);
-        //     leagueScores[data.values[0][1]] += parseInt(data.values[2][1]) + parseInt(data.values[3][1]) + parseInt(data.values[4][1]);
-        //     // Column 1 Match 2
-        //     if ((parseInt(data.values[2][3]) + parseInt(data.values[3][3]) + parseInt(data.values[4][3])) > (parseInt(data.values[2][4]) + parseInt(data.values[3][4]) + parseInt(data.values[4][4]))) {
-        //         leagueWins[data.values[0][3]] += 1;
-        //         leagueLosses[data.values[0][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[0][4]] += 1;
-        //         leagueLosses[data.values[0][3]] += 1;
-        //     }
-        //     leagueScores[data.values[0][3]] += parseInt(data.values[2][3]) + parseInt(data.values[3][3]) + parseInt(data.values[4][3]);
-        //     leagueScores[data.values[0][4]] += parseInt(data.values[2][4]) + parseInt(data.values[3][4]) + parseInt(data.values[4][4]);
-        //     // Column 1 Match 2
-        //     if ((parseInt(data.values[7][0]) + parseInt(data.values[8][0]) + parseInt(data.values[9][0])) > (parseInt(data.values[7][1]) + parseInt(data.values[8][1]) + parseInt(data.values[9][1]))) {
-        //         leagueWins[data.values[5][0]] += 1;
-        //         leagueLosses[data.values[5][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[5][1]] += 1;
-        //         leagueLosses[data.values[5][0]] += 1;
-        //     }
-        //     leagueScores[data.values[5][0]] += parseInt(data.values[7][0]) + parseInt(data.values[8][0]) + parseInt(data.values[9][0]);
-        //     leagueScores[data.values[5][1]] += parseInt(data.values[7][1]) + parseInt(data.values[8][1]) + parseInt(data.values[9][1]);
-        //     // Column 2 Match 2
-        //     if ((parseInt(data.values[7][3]) + parseInt(data.values[8][3]) + parseInt(data.values[9][3])) > (parseInt(data.values[7][4]) + parseInt(data.values[8][4]) + parseInt(data.values[9][4]))) {
-        //         leagueWins[data.values[5][3]] += 1;
-        //         leagueLosses[data.values[5][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[5][4]] += 1;
-        //         leagueLosses[data.values[5][3]] += 1;
-        //     }
-        //     leagueScores[data.values[5][3]] += parseInt(data.values[7][3]) + parseInt(data.values[8][3]) + parseInt(data.values[9][3]);
-        //     leagueScores[data.values[5][4]] += parseInt(data.values[7][4]) + parseInt(data.values[8][4]) + parseInt(data.values[9][4]);
-        //     // Column 1 Match 3
-        //     if ((parseInt(data.values[12][0]) + parseInt(data.values[13][0]) + parseInt(data.values[14][0])) > (parseInt(data.values[12][1]) + parseInt(data.values[13][1]) + parseInt(data.values[14][1]))) {
-        //         leagueWins[data.values[10][0]] += 1;
-        //         leagueLosses[data.values[10][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[10][1]] += 1;
-        //         leagueLosses[data.values[10][0]] += 1;
-        //     }
-        //     leagueScores[data.values[10][0]] += parseInt(data.values[12][0]) + parseInt(data.values[13][0]) + parseInt(data.values[14][0]);
-        //     leagueScores[data.values[10][1]] += parseInt(data.values[12][1]) + parseInt(data.values[13][1]) + parseInt(data.values[14][1]);
-        //     // Column 2 Match 3
-        //     if (parseInt(data.values[12][3]) + parseInt(data.values[13][3]) + parseInt(data.values[14][3]) > parseInt(data.values[12][4]) + parseInt(data.values[13][4]) + parseInt(data.values[14][4])) {
-        //         leagueWins[data.values[10][3]] += 1;
-        //         leagueLosses[data.values[10][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[10][4]] += 1;
-        //         leagueLosses[data.values[10][3]] += 1;
-        //     }
-        //     leagueScores[data.values[10][3]] += parseInt(data.values[12][3]) + parseInt(data.values[13][3]) + parseInt(data.values[14][3]);
-        //     leagueScores[data.values[10][4]] += parseInt(data.values[12][4]) + parseInt(data.values[13][4]) + parseInt(data.values[14][4]);
-        //     // Column 1 Match 4
-        //     if (parseInt(data.values[17][0]) + parseInt(data.values[18][0]) + parseInt(data.values[19][0]) > parseInt(data.values[17][1]) + parseInt(data.values[18][1]) + parseInt(data.values[19][1])) {
-        //         leagueWins[data.values[15][0]] += 1;
-        //         leagueLosses[data.values[15][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[15][1]] += 1;
-        //         leagueLosses[data.values[15][0]] += 1;
-        //     }
-        //     leagueScores[data.values[15][0]] += parseInt(data.values[17][0]) + parseInt(data.values[18][0]) + parseInt(data.values[19][0]);
-        //     leagueScores[data.values[15][1]] += parseInt(data.values[17][1]) + parseInt(data.values[18][1]) + parseInt(data.values[19][1]);
-        //     // Column 2 Match 4
-        //     if (parseInt(data.values[17][3]) + parseInt(data.values[18][3]) + parseInt(data.values[19][3]) > parseInt(data.values[17][4]) + parseInt(data.values[18][4]) + parseInt(data.values[19][4])) {
-        //         leagueWins[data.values[15][3]] += 1;
-        //         leagueLosses[data.values[15][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[15][4]] += 1;
-        //         leagueLosses[data.values[15][3]] += 1;
-        //     }
-        //     leagueScores[data.values[15][3]] += parseInt(data.values[17][3]) + parseInt(data.values[18][3]) + parseInt(data.values[19][3]);
-        //     leagueScores[data.values[15][4]] += parseInt(data.values[17][4]) + parseInt(data.values[18][4]) + parseInt(data.values[19][4]);
-        //     // Column 1 Match 5
-        //     if (parseInt(data.values[22][0]) + parseInt(data.values[23][0]) + parseInt(data.values[24][0]) > parseInt(data.values[22][1]) + parseInt(data.values[23][1]) + parseInt(data.values[24][1])) {
-        //         leagueWins[data.values[20][0]] += 1;
-        //         leagueLosses[data.values[20][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[20][1]] += 1;
-        //         leagueLosses[data.values[20][0]] += 1;
-        //     }
-        //     leagueScores[data.values[20][0]] += parseInt(data.values[22][0]) + parseInt(data.values[23][0]) + parseInt(data.values[24][0]);
-        //     leagueScores[data.values[20][1]] += parseInt(data.values[22][1]) + parseInt(data.values[23][1]) + parseInt(data.values[24][1]);
-        //     // Column 2 Match 5
-        //     if (parseInt(data.values[22][3]) + parseInt(data.values[23][3]) + parseInt(data.values[24][3]) > parseInt(data.values[22][4]) + parseInt(data.values[23][4]) + parseInt(data.values[24][4])) {
-        //         leagueWins[data.values[20][3]] += 1;
-        //         leagueLosses[data.values[20][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[20][4]] += 1;
-        //         leagueLosses[data.values[20][3]] += 1;
-        //     }
-        //     leagueScores[data.values[20][3]] += parseInt(data.values[22][3]) + parseInt(data.values[23][3]) + parseInt(data.values[24][3]);
-        //     leagueScores[data.values[20][4]] += parseInt(data.values[22][4]) + parseInt(data.values[23][4]) + parseInt(data.values[24][4]);
-        //     // Column 1 Match 6
-        //     if (parseInt(data.values[27][0]) + parseInt(data.values[28][0]) + parseInt(data.values[29][0]) > parseInt(data.values[27][1]) + parseInt(data.values[28][1]) + parseInt(data.values[29][1])) {
-        //         leagueWins[data.values[25][0]] += 1;
-        //         leagueLosses[data.values[25][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[25][1]] += 1;
-        //         leagueLosses[data.values[25][0]] += 1;
-        //     }
-        //     leagueScores[data.values[25][0]] += parseInt(data.values[27][0]) + parseInt(data.values[28][0]) + parseInt(data.values[29][0]);
-        //     leagueScores[data.values[25][1]] += parseInt(data.values[27][1]) + parseInt(data.values[28][1]) + parseInt(data.values[29][1]);
-        //     // Column 2 Match 6
-        //     if (parseInt(data.values[27][3]) + parseInt(data.values[28][3]) + parseInt(data.values[29][3]) > parseInt(data.values[27][4]) + parseInt(data.values[28][4]) + parseInt(data.values[29][4])) {
-        //         leagueWins[data.values[25][3]] += 1;
-        //         leagueLosses[data.values[25][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[25][4]] += 1;
-        //         leagueLosses[data.values[25][3]] += 1;
-        //     } 
-        //     leagueScores[data.values[25][3]] += parseInt(data.values[27][3]) + parseInt(data.values[28][3]) + parseInt(data.values[29][3]);
-        //     leagueScores[data.values[25][4]] += parseInt(data.values[27][4]) + parseInt(data.values[28][4]) + parseInt(data.values[29][4]);
-        //     return (fetch(week6URL));
-        // } else {
-        //     return (fetch(week6URL));
-        // }
-        // })
-
-        // // WEEK 6 DATA
-        // .then(response => response.json())
-        // .then(data => {
-        //     // Making sure the week is finished
-        //     if((data.values[29][4] !== undefined)) {
-        //     // Column 1 Match 1
-        //     if ((parseInt(data.values[2][0]) + parseInt(data.values[3][0]) + parseInt(data.values[4][0])) > (parseInt(data.values[2][1]) + parseInt(data.values[3][1]) + parseInt(data.values[4][1]))) {
-                
-        //         leagueWins[data.values[0][0]] += 1;
-        //         leagueLosses[data.values[0][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[0][1]] += 1;
-        //         leagueLosses[data.values[0][0]] += 1;
-        //     }
-        //     leagueScores[data.values[0][0]] += parseInt(data.values[2][0]) + parseInt(data.values[3][0]) + parseInt(data.values[4][0]);
-        //     leagueScores[data.values[0][1]] += parseInt(data.values[2][1]) + parseInt(data.values[3][1]) + parseInt(data.values[4][1]);
-        //     // Column 1 Match 2
-        //     if ((parseInt(data.values[2][3]) + parseInt(data.values[3][3]) + parseInt(data.values[4][3])) > (parseInt(data.values[2][4]) + parseInt(data.values[3][4]) + parseInt(data.values[4][4]))) {
-        //         leagueWins[data.values[0][3]] += 1;
-        //         leagueLosses[data.values[0][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[0][4]] += 1;
-        //         leagueLosses[data.values[0][3]] += 1;
-        //     }
-        //     leagueScores[data.values[0][3]] += parseInt(data.values[2][3]) + parseInt(data.values[3][3]) + parseInt(data.values[4][3]);
-        //     leagueScores[data.values[0][4]] += parseInt(data.values[2][4]) + parseInt(data.values[3][4]) + parseInt(data.values[4][4]);
-        //     // Column 1 Match 2
-        //     if ((parseInt(data.values[7][0]) + parseInt(data.values[8][0]) + parseInt(data.values[9][0])) > (parseInt(data.values[7][1]) + parseInt(data.values[8][1]) + parseInt(data.values[9][1]))) {
-        //         leagueWins[data.values[5][0]] += 1;
-        //         leagueLosses[data.values[5][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[5][1]] += 1;
-        //         leagueLosses[data.values[5][0]] += 1;
-        //     }
-        //     leagueScores[data.values[5][0]] += parseInt(data.values[7][0]) + parseInt(data.values[8][0]) + parseInt(data.values[9][0]);
-        //     leagueScores[data.values[5][1]] += parseInt(data.values[7][1]) + parseInt(data.values[8][1]) + parseInt(data.values[9][1]);
-        //     // Column 2 Match 2
-        //     if ((parseInt(data.values[7][3]) + parseInt(data.values[8][3]) + parseInt(data.values[9][3])) > (parseInt(data.values[7][4]) + parseInt(data.values[8][4]) + parseInt(data.values[9][4]))) {
-        //         leagueWins[data.values[5][3]] += 1;
-        //         leagueLosses[data.values[5][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[5][4]] += 1;
-        //         leagueLosses[data.values[5][3]] += 1;
-        //     }
-        //     leagueScores[data.values[5][3]] += parseInt(data.values[7][3]) + parseInt(data.values[8][3]) + parseInt(data.values[9][3]);
-        //     leagueScores[data.values[5][4]] += parseInt(data.values[7][4]) + parseInt(data.values[8][4]) + parseInt(data.values[9][4]);
-        //     // Column 1 Match 3
-        //     if ((parseInt(data.values[12][0]) + parseInt(data.values[13][0]) + parseInt(data.values[14][0])) > (parseInt(data.values[12][1]) + parseInt(data.values[13][1]) + parseInt(data.values[14][1]))) {
-        //         leagueWins[data.values[10][0]] += 1;
-        //         leagueLosses[data.values[10][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[10][1]] += 1;
-        //         leagueLosses[data.values[10][0]] += 1;
-        //     }
-        //     leagueScores[data.values[10][0]] += parseInt(data.values[12][0]) + parseInt(data.values[13][0]) + parseInt(data.values[14][0]);
-        //     leagueScores[data.values[10][1]] += parseInt(data.values[12][1]) + parseInt(data.values[13][1]) + parseInt(data.values[14][1]);
-        //     // Column 2 Match 3
-        //     if (parseInt(data.values[12][3]) + parseInt(data.values[13][3]) + parseInt(data.values[14][3]) > parseInt(data.values[12][4]) + parseInt(data.values[13][4]) + parseInt(data.values[14][4])) {
-        //         leagueWins[data.values[10][3]] += 1;
-        //         leagueLosses[data.values[10][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[10][4]] += 1;
-        //         leagueLosses[data.values[10][3]] += 1;
-        //     }
-        //     leagueScores[data.values[10][3]] += parseInt(data.values[12][3]) + parseInt(data.values[13][3]) + parseInt(data.values[14][3]);
-        //     leagueScores[data.values[10][4]] += parseInt(data.values[12][4]) + parseInt(data.values[13][4]) + parseInt(data.values[14][4]);
-        //     // Column 1 Match 4
-        //     if (parseInt(data.values[17][0]) + parseInt(data.values[18][0]) + parseInt(data.values[19][0]) > parseInt(data.values[17][1]) + parseInt(data.values[18][1]) + parseInt(data.values[19][1])) {
-        //         leagueWins[data.values[15][0]] += 1;
-        //         leagueLosses[data.values[15][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[15][1]] += 1;
-        //         leagueLosses[data.values[15][0]] += 1;
-        //     }
-        //     leagueScores[data.values[15][0]] += parseInt(data.values[17][0]) + parseInt(data.values[18][0]) + parseInt(data.values[19][0]);
-        //     leagueScores[data.values[15][1]] += parseInt(data.values[17][1]) + parseInt(data.values[18][1]) + parseInt(data.values[19][1]);
-        //     // Column 2 Match 4
-        //     if (parseInt(data.values[17][3]) + parseInt(data.values[18][3]) + parseInt(data.values[19][3]) > parseInt(data.values[17][4]) + parseInt(data.values[18][4]) + parseInt(data.values[19][4])) {
-        //         leagueWins[data.values[15][3]] += 1;
-        //         leagueLosses[data.values[15][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[15][4]] += 1;
-        //         leagueLosses[data.values[15][3]] += 1;
-        //     }
-        //     leagueScores[data.values[15][3]] += parseInt(data.values[17][3]) + parseInt(data.values[18][3]) + parseInt(data.values[19][3]);
-        //     leagueScores[data.values[15][4]] += parseInt(data.values[17][4]) + parseInt(data.values[18][4]) + parseInt(data.values[19][4]);
-        //     // Column 1 Match 5
-        //     if (parseInt(data.values[22][0]) + parseInt(data.values[23][0]) + parseInt(data.values[24][0]) > parseInt(data.values[22][1]) + parseInt(data.values[23][1]) + parseInt(data.values[24][1])) {
-        //         leagueWins[data.values[20][0]] += 1;
-        //         leagueLosses[data.values[20][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[20][1]] += 1;
-        //         leagueLosses[data.values[20][0]] += 1;
-        //     }
-        //     leagueScores[data.values[20][0]] += parseInt(data.values[22][0]) + parseInt(data.values[23][0]) + parseInt(data.values[24][0]);
-        //     leagueScores[data.values[20][1]] += parseInt(data.values[22][1]) + parseInt(data.values[23][1]) + parseInt(data.values[24][1]);
-        //     // Column 2 Match 5
-        //     if (parseInt(data.values[22][3]) + parseInt(data.values[23][3]) + parseInt(data.values[24][3]) > parseInt(data.values[22][4]) + parseInt(data.values[23][4]) + parseInt(data.values[24][4])) {
-        //         leagueWins[data.values[20][3]] += 1;
-        //         leagueLosses[data.values[20][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[20][4]] += 1;
-        //         leagueLosses[data.values[20][3]] += 1;
-        //     }
-        //     leagueScores[data.values[20][3]] += parseInt(data.values[22][3]) + parseInt(data.values[23][3]) + parseInt(data.values[24][3]);
-        //     leagueScores[data.values[20][4]] += parseInt(data.values[22][4]) + parseInt(data.values[23][4]) + parseInt(data.values[24][4]);
-        //     // Column 1 Match 6
-        //     if (parseInt(data.values[27][0]) + parseInt(data.values[28][0]) + parseInt(data.values[29][0]) > parseInt(data.values[27][1]) + parseInt(data.values[28][1]) + parseInt(data.values[29][1])) {
-        //         leagueWins[data.values[25][0]] += 1;
-        //         leagueLosses[data.values[25][1]] += 1;
-        //     } else {
-        //         leagueWins[data.values[25][1]] += 1;
-        //         leagueLosses[data.values[25][0]] += 1;
-        //     }
-        //     leagueScores[data.values[25][0]] += parseInt(data.values[27][0]) + parseInt(data.values[28][0]) + parseInt(data.values[29][0]);
-        //     leagueScores[data.values[25][1]] += parseInt(data.values[27][1]) + parseInt(data.values[28][1]) + parseInt(data.values[29][1]);
-        //     // Column 2 Match 6
-        //     if (parseInt(data.values[27][3]) + parseInt(data.values[28][3]) + parseInt(data.values[29][3]) > parseInt(data.values[27][4]) + parseInt(data.values[28][4]) + parseInt(data.values[29][4])) {
-        //         leagueWins[data.values[25][3]] += 1;
-        //         leagueLosses[data.values[25][4]] += 1;
-        //     } else {
-        //         leagueWins[data.values[25][4]] += 1;
-        //         leagueLosses[data.values[25][3]] += 1;
-        //     } 
-        //     leagueScores[data.values[25][3]] += parseInt(data.values[27][3]) + parseInt(data.values[28][3]) + parseInt(data.values[29][3]);
-        //     leagueScores[data.values[25][4]] += parseInt(data.values[27][4]) + parseInt(data.values[28][4]) + parseInt(data.values[29][4]);
-        //     return (fetch(standingsURL));
-        // } else {
-        //     return (fetch(standingsURL));
-        // }
-        // })
-
-
-
-        // // STANDINGS SECTION
-        .then(response => response.json())
-        .then(data => {
-            let table = "<table class='table table-dark' border='1'> <thead> <tr class='table-header-gold'><th style='width: 5%;' scope='col'>Rank</th><th scope='col'>Team Name</th><th style='width: 12%;' scope='col'>Points</th><th style='width: 12%;' scope='col'>Wins</th><th style='width: 12%;' scope='col'>Losses</th></tr></thead><tbody>";
-            let counter = 0;
-            const rankingTeams = Object.entries(leagueScores).sort((a, b) => b[1] - a[1]);
-            rankingTeams.forEach(team => {
-                let teamName = team[0];
-                let teamScore = team[1];
-                    if (counter === 0) {
-                        table += `<tr> <th scope='row'>${goldTeam}</i></th> <td>${teamName}</td> <td>${teamScore}</td> <td>${leagueWins[teamName]}</td> <td>${leagueLosses[teamName]}</td> </tr>`;
-                    } else if (counter === 1) {
-                        table += `<tr> <th scope='row'>${silverTeam}</th> <td>${teamName}</td> <td>${teamScore}</td> <td>${leagueWins[teamName]}</td> <td>${leagueLosses[teamName]}</td> </tr>`;
-                    } else if (counter === 2) {
-                        table += `<tr> <th scope='row'>${bronzeTeam}</th> <td>${teamName}</td> <td>${teamScore}</td> <td>${leagueWins[teamName]}</td> <td>${leagueLosses[teamName]}</td> </tr>`;
-                    } else {
-                        table += `<tr> <th scope='row'>${counter+1}</th> <td>${teamName}</td> <td>${teamScore}</td> <td>${leagueWins[teamName]}</td> <td>${leagueLosses[teamName]}</td> </tr>`;
-                    }
-                    counter++;
-                });
-                        
-                table += "</tbody></table>";
-                document.getElementById("standings").innerHTML = table;
+            data.values.forEach(rankedTeam => {
+                if (rankedTeam[0] === '1') {
+                    document.getElementById("gold-team").innerHTML = `${goldTeam} ${rankedTeam[1]}`;
+                    document.getElementById("gold-points").innerHTML = `${rankedTeam[2]} Points`;
+                } else if (rankedTeam[0] === '2') {
+                    document.getElementById("silver-team").innerHTML = `${silverTeam} ${rankedTeam[1]}`;
+                    document.getElementById("silver-points").innerHTML = `${rankedTeam[2]} Points`;
+                } else if (rankedTeam[0] === '3') {
+                    document.getElementById("bronze-team").innerHTML = `${bronzeTeam} ${rankedTeam[1]}`;
+                    document.getElementById("bronze-points").innerHTML = `${rankedTeam[2]} Points`;
+                } else {    
+                    content += `<div class='p-2'>${rankedTeam[0]} ${rankedTeam[1]}</div>`;
+                } 
+            })
+            content += "</div>";
+            document.getElementById("standings").innerHTML = content;
         });
 
     
