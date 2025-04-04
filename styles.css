@@ -206,7 +206,7 @@ table.table thead tr.table-header-gold th {
     border: 2px solid #ffcd00;
     border-radius: 5px;
     margin-bottom: -10px;
-    transform: scale(0.2);
+    transform: scale(0.8);
 }
 
 .schedule-round, .schedule-time {
