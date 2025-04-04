@@ -2,6 +2,7 @@ html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    font-size: 14px;
 }
 
 body {
@@ -18,6 +19,10 @@ body::after {
 .container {
     max-width: 100% !important;
     padding: 5px;
+}
+
+.scale-test {
+    transform: scale(0.8);
 }
 
 h2 {
@@ -159,4 +164,74 @@ table.table thead tr.table-header-gold th {
 
 .bronze-standings {
     background-color: #c96d22;
+}
+
+.gold-standings, .silver-standings, .bronze-standings {
+    font-weight: bolder;
+    padding: 20px 5px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.remaining-team-container {
+    padding: 15px 5px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid #ffcd00;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.remaining-team-rank {
+    color: #ffcd00;
+    margin: 0 20px;
+    justify-self: flex-start;
+}
+
+.remaining-team-name {
+    font-size: 1.25rem;
+    font-weight: bolder;
+    margin-right: 10px;
+}
+
+.remaining-team-points {
+    justify-self: flex-end;
+    margin-right: 20px;
+}
+
+.match-container {
+    padding: 20px;
+    border: 2px solid #ffcd00;
+    border-radius: 5px;
+    margin-bottom: -10px;
+    transform: scale(0.8);
+}
+
+.schedule-round, .schedule-time {
+    margin: 10px 10px 40px 10px;
+    padding: 15px 5px;
+}
+
+.schedule-team, .schedule-vs, .schedule-score {
+    margin: 10px;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.schedule-score, .schedule-time {
+    border: 1px solid #ffffff;
+    border-radius: 1px;
+    text-align: center;
+}
+
+.schedule-score{
+    width: 50%;
+}
+
+.schedule-time {
+    border-radius: 5px;
+    background-color: #ffcd00;
+    color: #000;
 }
